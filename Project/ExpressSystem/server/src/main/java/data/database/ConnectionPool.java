@@ -23,7 +23,7 @@ public class ConnectionPool extends Thread {
     private int created;
 
     /* 连接池最大数 */
-    private final int MAX_CONNCTION = 100;
+    private final int MAX_CONNECTION = 1000;
 
     private static final String DB_DRIVER;
     private static final String DB_URL;
@@ -68,13 +68,10 @@ public class ConnectionPool extends Thread {
         return connectionPoolInstance;
     }
 
-
     public Connection getConnection(String poolname, String caller){
         Connection connection = null;
-        //百度得,有待理解
-        if (null == caller || caller.length() == 0) {
-            StackTraceElement[] callerStackTrace = new Throwable()
-                    .getStackTrace();
+        if (caller == null || caller.length() == 0) {
+            StackTraceElement[] callerStackTrace = new Throwable().getStackTrace();
             caller = callerStackTrace[1].toString();
         }
         //从已经创建但是没有被使用的连接中获取Connection
@@ -83,7 +80,7 @@ public class ConnectionPool extends Thread {
                 connection = (Connection) unuesdPool.pop();
             }
         }catch (EmptyStackException e){
-            connection = newConnection();
+            connection = this.creatNewConnection();
         }
         //成功获得Connection
         if(connection != null){
@@ -99,9 +96,10 @@ public class ConnectionPool extends Thread {
      *
      * @return 新的数据库连接
      */
-    private Connection newConnection() {
+    private Connection creatNewConnection() {
         Connection connection = null;
-        if(this.created < this.MAX_CONNCTION){
+        //可以创建新的连接
+        if(this.created < this.MAX_CONNECTION){
             //尝试建立连接
             try {
                 Class.forName(DB_DRIVER);

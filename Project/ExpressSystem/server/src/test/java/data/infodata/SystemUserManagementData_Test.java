@@ -45,6 +45,7 @@ public class SystemUserManagementData_Test {
 
 	@Test
 	public void testGetAllUsers() throws Exception {
+        SystemUserManagementData service = new SystemUserManagementData();
         ArrayList<UserPO> result = service.getAllUsers();
         for (UserPO po2:result) {
             System.out.println(po2);

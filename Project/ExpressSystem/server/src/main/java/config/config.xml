@@ -8,7 +8,7 @@
         <param key = "dbUnicode" value = "useUnicode=true"/>
         <param key = "dbEncoding" value = "characterEncoding=UTF-8"/>
         <param key = "dbUser" value = "root"/>
-        <param key = "dbPassword" value = "86910"/>
+        <param key = "dbPassword" value = "861910"/>
     </database>
 
     <connection>

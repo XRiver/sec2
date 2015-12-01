@@ -83,5 +83,5 @@ public interface SystemUserManagementDataService extends Remote, Serializable {
 	 * @throws SQLException 
 	 * @throws ElementNotFoundException 
 	 */
-	public LogInMsg logIn(String account,String password) throws SQLException;
+	public LogInMsg logIn(String account,String password) throws RemoteException, SQLException;
 }

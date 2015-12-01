@@ -112,7 +112,7 @@ public class SystemUserManagementData extends UnicastRemoteObject implements Sys
     }
 
 	@Override
-	public LogInMsg logIn(String account, String password) throws SQLException {
+	public LogInMsg logIn(String account, String password) throws RemoteException,SQLException {
 		Connection connection = DatabaseManager.getConnection();
 		
 		//First, find if the account exist.
