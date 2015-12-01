@@ -26,28 +26,30 @@ public class InventoryDataService_Stub implements InventoryDataService {
     	inventoryPOs = new ArrayList<InventoryPO>();
     ArrayList<CommodityGoodsPO> goods1 = new ArrayList<CommodityGoodsPO>();
     goods1.add(goodsInfo1);
-    inventoryPO1 = new InventoryPO("10","20","1000",goods1);
+    inventoryPO1 = new InventoryPO(100,"10","20","1000",goods1);
         
     ArrayList<CommodityGoodsPO> goods2 = new ArrayList<CommodityGoodsPO>();
     goods2.add(goodsInfo2);
-    inventoryPO2 = new InventoryPO("10","20","1000",goods2);
+    inventoryPO2 = new InventoryPO(100,"10","20","1000",goods2);
 
         inventoryPOs.add(inventoryPO1);
         inventoryPOs.add(inventoryPO2);
     }
 
-    public ArrayList<InventoryPO> findByTime(String sTime, String eTime,String staffID) throws RemoteException {
+    public InventoryPO findByTime(String sTime, String eTime,String staffID) throws RemoteException {
         System.out.println("InventoryDataService findByTime succeed");
-        return inventoryPOs;
+        return new InventoryPO(100,null, null, null, null);
     }
 
-    public ArrayList<InventoryPO> findAll(String staffID) throws RemoteException {
+    public InventoryPO findAll(String staffID) throws RemoteException {
         System.out.println("InventoryDataService findAll succeed");
-        return inventoryPOs;
+        return new InventoryPO(100,null, null, null, null);
     }
 
 	@Override
-	public boolean setRecentTime(String staffID) {
+	public boolean setRecentTime(String date,String staffID) {
 		return true;
 	}
+
+
 }

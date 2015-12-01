@@ -91,6 +91,9 @@ public class StorageOutPO implements Serializable{
 		return carCode;
 	}
 
+	/**
+	 * @return true for transfer code available, false for car code avaliable
+	 */
 	public boolean isTransferOrCar() {
 		return TransferOrCar;
 	}

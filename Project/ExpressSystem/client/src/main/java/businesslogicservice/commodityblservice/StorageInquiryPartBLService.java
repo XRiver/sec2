@@ -27,6 +27,6 @@ public interface StorageInquiryPartBLService {
    * @param time2
    * @return
    */
-  public ArrayList<InventoryVO> show(String time1,String time2);
+  public InventoryVO show(String time1,String time2);
   
 }

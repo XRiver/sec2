@@ -24,11 +24,14 @@ import dataservice.exception.ElementNotFoundException;
  * id(varchar(32)),date(varchar(32)),warehouseID(varchar(20))，isPassed(int,enum Doc for java)
  * 
  * InOutInfo
- * OrderID(VARCHAR(16)),WarehouseID(varchar(20)),isIn(int as boolean,DEFAULT 1),Date(varchar(32))
+ * OrderID(VARCHAR(16)),WarehouseID(varchar(20)),isIn(int as boolean,DEFAULT 1),Date(varchar(32)),
+ * aeraCode(VARCHAR(16)),rowNumber(VARCHAR(16)),frameNumber(VARCHAR(16)),placeNumber(VARCHAR(16))
  */
 
 public class StorageInData implements StorageInDataService {
 	
+
+	private static final long serialVersionUID = -4450540381738301736L;
 	private Connection connection;
 	
 	public StorageInData() {
@@ -103,8 +106,11 @@ public class StorageInData implements StorageInDataService {
     	ArrayList<CommodityGoodsPO> list = po.getGoodsInStorageInfo();
     	for(CommodityGoodsPO good:list) {
     		try {
-				int result = stmt.executeUpdate("insert into InOutInfo (OrderID,WarehouseID,isIn,Date)"
-						+ " values('"+good.getBarcode()+"','"+org+"',"+1+",'"+po.getDate()+"')");
+				int result = stmt.executeUpdate("insert into InOutInfo (OrderID,WarehouseID,isIn,Date,aeraCode,"
+						+ "rowNumber,frameNumber,placeNumber) values"
+						+ "('"+good.getBarcode()+"','"+org+"',"+1+",'"+po.getDate()+"','"+good.getAreacode()+"',"
+						+ "'"+good.getRownumber()+"','"+good.getFramenumber()+"','"+good.getPlacenumber()+"')");
+				result = stmt.executeUpdate("update order set isInStorage=1,warehouseID='"+org+"' where barcode='"+good.getBarcode()+"'");
 			} catch (SQLException e) {
 				e.printStackTrace();
 		    	DatabaseManager.releaseConnection(connection, stmt, set);

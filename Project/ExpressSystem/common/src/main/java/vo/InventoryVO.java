@@ -9,6 +9,11 @@ import util.ResultMsg;
 
 public class InventoryVO {
 	
+	/**
+	 * 总的库存数量
+	 */
+	private int num;
+	
     /**
      * 出库数量
      */
@@ -36,7 +41,8 @@ public class InventoryVO {
 	 * @param money
 	 * @param place
 	 */
-	public InventoryVO(String outNum, String inNum,String money,ArrayList<CommodityGoodsVO> goodsInfo){
+	public InventoryVO(int num,String outNum, String inNum,String money,ArrayList<CommodityGoodsVO> goodsInfo){
+		this.num = num;
 		this.outNum = outNum;
 		this.inNum = inNum;
 		this.money = money;
@@ -44,6 +50,10 @@ public class InventoryVO {
 		
 	}
 
+	public int getNum(){
+		return num;
+	}
+	
 	public String getOutNum() {
 		return outNum;
 	}
@@ -103,7 +113,7 @@ public class InventoryVO {
 			list.add((CommodityGoodsPO) vo.toPO());
 		}
 		
-		InventoryPO po = new InventoryPO(outNum, inNum, money, list);
+		InventoryPO po = new InventoryPO(num,outNum, inNum, money, list);
 		
 		return po;
 	}

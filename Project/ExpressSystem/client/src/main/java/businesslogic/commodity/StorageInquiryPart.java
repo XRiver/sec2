@@ -45,21 +45,15 @@ public class StorageInquiryPart implements StorageInquiryPartBLService {
     }
 
     @Override
-    public ArrayList<InventoryVO> show(String time1, String time2) {
-    	ArrayList<InventoryPO> list = null;
-    	
+    public InventoryVO show(String time1, String time2) {
+    	InventoryPO result = null;
     	try {
-    		list = dataService.findByTime(time1, time2, RuntimeUserInfo.getNum());
+    		result = dataService.findByTime(time1, time2, RuntimeUserInfo.getNum());
     	} catch(RemoteException e) {
     		System.err.println(e.getMessage());
     		return null;
     	}
     	
-    	Iterator<InventoryPO> it = list.iterator();
-    	while(it.hasNext()) {
-    		resultList.add((InventoryVO) it.next().toVO());
-    	}
-    	
-        return resultList;
+        return (InventoryVO) result.toVO();
     }
 }

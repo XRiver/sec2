@@ -24,7 +24,7 @@ public class InventoryPO implements Serializable{
 	/**
 	 * 总的库存数量
 	 */
-	private String num;
+	private int num;
 
 
 	/**
@@ -54,7 +54,8 @@ public class InventoryPO implements Serializable{
 	 * @param money
 	 * @param goodsInfo
 	 */
-	public InventoryPO(String outNum, String inNum,String money,ArrayList<CommodityGoodsPO> goodsInfo){
+	public InventoryPO(int num,String outNum, String inNum,String money,ArrayList<CommodityGoodsPO> goodsInfo){
+		this.num = num;
 		this.outNum = outNum;
 		this.inNum = inNum;
 		this.money = money;
@@ -79,7 +80,7 @@ public class InventoryPO implements Serializable{
 		return goodsInfo;
 	}
 
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
 
@@ -91,7 +92,7 @@ public class InventoryPO implements Serializable{
 			list.add((CommodityGoodsVO) it.next().toVO());
 		}
 		
-		InventoryVO vo = new InventoryVO(outNum, inNum, money, list);
+		InventoryVO vo = new InventoryVO(num,outNum, inNum, money, list);
 		return vo;
 	}
 

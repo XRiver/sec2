@@ -14,8 +14,8 @@ public class StorageInquiryPartBLService_Stub implements StorageInquiryPartBLSer
 		else
 			return new ResultMsg(false,"failure");
 	}
-	public ArrayList<InventoryVO> show(String time1, String time2) {
-		return new ArrayList<InventoryVO>();
+	public InventoryVO show(String time1, String time2) {
+		return new InventoryVO(100,null, null, null, null);
 	}
 
 }
